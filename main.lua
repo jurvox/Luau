@@ -21,7 +21,7 @@ b:Toggle("Auto Rebirth",function(bool)
     getgenv().autoRebirth = bool
     print("Auto Rebirth is:", bool)
     if bool then
-        doRebirth(1000)
+        doRebirth(10000)
     end
 end)
 
