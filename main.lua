@@ -132,5 +132,3 @@ function worldTeleport(world)
 		teleportTo(game:GetService("Workspace").Worlds[world].Teleport.CFrame)
     end
 end
-
-print('sus amogus')
