@@ -1,0 +1,11 @@
+{
+    "robloxLsp.diagnostics.globals": [
+        "getgenv",
+        "autoEgg",
+        "autoTap",
+        "autoRebirth"
+    ],
+    "robloxLsp.diagnostics.disable": [
+        "deprecated"
+    ]
+}
