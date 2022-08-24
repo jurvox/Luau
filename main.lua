@@ -17,11 +17,16 @@ b:Toggle("Auto Tap",function(bool)
     end
 end)
 
+local selectedRebirth
+b:Dropdown("Amount of rebirths:",{1,10,100,1000,10000,100000,1000000,10000000},true,function(value)
+    selectedRebirth = value
+end)
+
 b:Toggle("Auto Rebirth",function(bool)
     getgenv().autoRebirth = bool
     print("Auto Rebirth is:", bool)
     if bool then
-        doRebirth(10000)
+        doRebirth(selectedRebirth)
     end
 end)
 
@@ -33,54 +38,17 @@ c:Toggle("Auto Buy Eggs",function(bool)
     end
 end)
 
-d:Button("Desert",function()
-    worldTeleport("Desert")
+local selectedWorld
+d:Dropdown("World",{"Desert","Winter","Lava","Toxic","Ocean","Candy","Space","Forest","City","Blocks","Future","Infinity","Moon","Fire","Storm","Dominus"},true,function(value)
+    selectedWorld = value
 end)
-d:Button("Winter",function()
-    worldTeleport("Winter")
+
+d:Button("Teleport",function()
+    if selectedWorld then
+        worldTeleport(selectedWorld)
+    end
 end)
-d:Button("Lava",function()
-    worldTeleport("Lava")
-end)
-d:Button("Toxic",function()
-    worldTeleport("Toxic")
-end)
-d:Button("Ocean",function()
-    worldTeleport("Ocean")
-end)
-d:Button("Candy",function()
-    worldTeleport("Candy")
-end)
-d:Button("Space",function()
-    worldTeleport("Space")
-end)
-d:Button("Forest",function()
-    worldTeleport("Forest")
-end)
-d:Button("City",function()
-    worldTeleport("City")
-end)
-d:Button("Blocks",function()
-    worldTeleport("Blocks")
-end)
-d:Button("Future",function()
-    worldTeleport("Future")
-end)
-d:Button("Infinity",function()
-    worldTeleport("Infinity")
-end)
-d:Button("Moon",function()
-    worldTeleport("Moon")
-end)
-d:Button("Fire",function()
-    worldTeleport("Fire")
-end)
-d:Button("Storm",function()
-    worldTeleport("Storm")
-end)
-d:Button("Dominus",function()
-    worldTeleport("Dominus")
-end)
+
 b:DestroyGui()
 
 
