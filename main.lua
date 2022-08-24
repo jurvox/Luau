@@ -2,6 +2,8 @@ getgenv().autoTap = false
 getgenv().autoRebirth = false
 getgenv().autoEgg = false
 local remoteParent = game:GetService("ReplicatedStorage").Aero.AeroRemoteServices
+local clickMod = require(game:GetService("Players").jurvox002.PlayerScripts.Aero.Controllers.UI.Click)
+
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
 local w = library:CreateWindow("Clicker Madness")
@@ -17,17 +19,10 @@ b:Toggle("Auto Tap",function(bool)
     end
 end)
 
-local selectedRebirth
-b:Dropdown("Amount of rebirths:",{1,10,100,1000,10000,100000,1000000,10000000},true,function(value)
-    selectedRebirth = value
+b:Button("Unlock Auto Rebirth Gamepass",function()
+    autoRebirthGamepass()
 end)
-b:Toggle("Auto Rebirth",function(bool)
-    getgenv().autoRebirth = bool
-    print("Auto Rebirth is:", bool)
-    if bool then
-        doRebirth(selectedRebirth)
-    end
-end)
+
 c:Toggle("Auto Buy Eggs",function(bool)
     getgenv().autoEgg = bool
     print("Auto Buy Eggs is:", bool)
@@ -40,6 +35,7 @@ local selectedWorld
 d:Dropdown("World",{"Desert","Winter","Lava","Toxic","Ocean","Candy","Space","Forest","City","Blocks","Future","Infinity","Moon","Fire","Storm","Dominus"},true,function(value)
     selectedWorld = value
 end)
+
 d:Button("Teleport",function()
     if selectedWorld then
         worldTeleport(selectedWorld)
@@ -48,21 +44,16 @@ end)
 d:DestroyGui()
 
 
+function autoRebirthGamepass()
+    local gamepassMod = require(game:GetService("ReplicatedStorage").Aero.Shared.Gamepasses)
+    gamepassMod.HasPassOtherwisePrompt = function() return true end
+end
+
 function doTap()
     spawn(function()
         while wait() do
             if not autoTap then break end
-            remoteParent.ClickService.Click:FireServer(1)
-        end
-    end)
-end
-
-function doRebirth(rebirthAmount)
-    spawn(function()
-        while wait() do
-            if not autoRebirth then break end
-            local args = {[1] = rebirthAmount}
-            remoteParent.RebirthService.BuyRebirths:FireServer(unpack(args))
+                clickMod:Click()
         end
     end)
 end
