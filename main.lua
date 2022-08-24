@@ -21,7 +21,6 @@ local selectedRebirth
 b:Dropdown("Amount of rebirths:",{1,10,100,1000,10000,100000,1000000,10000000},true,function(value)
     selectedRebirth = value
 end)
-
 b:Toggle("Auto Rebirth",function(bool)
     getgenv().autoRebirth = bool
     print("Auto Rebirth is:", bool)
@@ -29,7 +28,6 @@ b:Toggle("Auto Rebirth",function(bool)
         doRebirth(selectedRebirth)
     end
 end)
-
 c:Toggle("Auto Buy Eggs",function(bool)
     getgenv().autoEgg = bool
     print("Auto Buy Eggs is:", bool)
@@ -42,14 +40,12 @@ local selectedWorld
 d:Dropdown("World",{"Desert","Winter","Lava","Toxic","Ocean","Candy","Space","Forest","City","Blocks","Future","Infinity","Moon","Fire","Storm","Dominus"},true,function(value)
     selectedWorld = value
 end)
-
 d:Button("Teleport",function()
     if selectedWorld then
         worldTeleport(selectedWorld)
     end
 end)
-
-b:DestroyGui()
+d:DestroyGui()
 
 
 function doTap()
