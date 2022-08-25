@@ -51,7 +51,7 @@ end
 
 function doTap()
     spawn(function()
-        while wait() do
+        while wait(0.0000001) do
             if not autoTap then break end
                 clickMod:Click()
         end
